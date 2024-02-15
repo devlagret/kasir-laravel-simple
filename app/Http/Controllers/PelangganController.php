@@ -18,12 +18,15 @@ class PelangganController extends Controller
     public function create()
     {
         // $sessiondata = Session::get('data-pelanggan');
-        return view('Pelanggan.add', compact('sessiondata'));
+        // return view('Pelanggan.add', compact('sessiondata'));
+        return view('Pelanggan.add');
     }
-    public function update()
+    public function update($id)
     {
+        $data = Pelanggan::find($id);
         // $sessiondata = Session::get('data-pelanggan');
-        return view('Pelanggan.edit', compact('sessiondata'));
+        // return view('Pelanggan.edit', compact('sessiondata'));
+        return view('Pelanggan.edit',compact('data'));
     }
     public function delete($PelangganID)
     {
@@ -55,7 +58,7 @@ class PelangganController extends Controller
     {
         try {
             DB::beginTransaction();
-            Pelanggan::find($request->PelangganID)->update($request->except('PelangganID'));
+            Pelanggan::find($request->id)->update($request->except('id'));
             DB::commit();
             return redirect()->route('customer.index')->with(['msg' => 'Berhasil Mengupdate System User', 'type' => 'success']);
             } catch (\Exception $e) {

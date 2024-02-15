@@ -25,8 +25,8 @@
                 Tambah
             </h5>
             <div class="form-actions float-right">
-                <a href='{{ route('customer.index') }}' name="Find" class="btn btn-sm btn-info" title="Add Data"><i
-                        class="fa fa-plus"></i> Kembali</a>
+                <a href='{{ route('customer.index') }}' name="Find" class="btn btn-sm btn-primary" title="Back"><i
+                        class="fa fa-arrow-left"></i> Kembali</a>
             </div>
         </div>
         <form action="{{route('customer.process-add')}}" method="post">
@@ -42,8 +42,9 @@
             </div>
             <div class="card-footer text-muted">
                 <div class="form-actions float-right">
-                    <button type="reset" name="Reset" class="btn btn-danger"><i class="fa fa-times"></i> Batal</button>
-                    <button type="button" onclick="$(this).addClass('disabled');$('form').submit();" name="Save" class="btn btn-success" title="Save"><i class="fa fa-check"></i> Simpan</button>
+                    <x-adminlte-button class="btn" type="reset" label="Reset" theme="danger" icon="fas fa-trash" />
+                    <x-adminlte-button class="btn" type="submit" label="Submit" theme="success"
+                        onclick="$(this).addClass('disabled');$('form').submit();" icon="fas fa-save" />
                 </div>
             </div>
         </form>

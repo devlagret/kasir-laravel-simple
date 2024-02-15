@@ -63,7 +63,7 @@ class PelangganDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('PelangganID')->title(__('No'))->data('DT_RowIndex') ->addClass('text-center')->width(10),
+            Column::make('id')->title(__('No'))->data('DT_RowIndex') ->addClass('text-center')->width(10),
             Column::make('NamaPelanggan'),
             Column::make('NomorTelepon'),
             Column::make('Alamat'),

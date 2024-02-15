@@ -25,7 +25,7 @@
               Daftar
           </h5>
           <div class="form-actions float-right">
-              <a href='{{route('customer.add')}}' name="Find" class="btn btn-sm btn-info" title="Add Data"><i class="fa fa-plus"></i> Tambah Data</a>
+              <a href='{{route('customer.add')}}' name="Find" class="btn btn-sm btn-primary" title="Add Data"><i class="fa fa-plus"></i> Tambah Data</a>
           </div>
         </div>
           <div class="card-body">
@@ -44,6 +44,7 @@
 @stop
 
 @section('css')
+<link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')
