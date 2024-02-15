@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Penjualan extends Model
 {
     use HasFactory,SoftDeletes;
-    protected $table        = 'penjualan';
-    protected $primaryKey   = 'PenjualanID';
     protected $guarded = [
         'updated_at',
         'created_at'
     ];
+    public function detail() {
+        return $this->hasMany(DetailPenjualan::class);
+    }
 }

@@ -12,17 +12,17 @@ class PelangganController extends Controller
 {
     public function index(PelangganDataTable $table)
     {
-        Session::forget('data-pelanggan');
+        // Session::forget('data-pelanggan');
         return $table->render('Pelanggan.index');
     }
     public function create()
     {
-        $sessiondata = Session::get('data-pelanggan');
+        // $sessiondata = Session::get('data-pelanggan');
         return view('Pelanggan.add', compact('sessiondata'));
     }
     public function update()
     {
-        $sessiondata = Session::get('data-pelanggan');
+        // $sessiondata = Session::get('data-pelanggan');
         return view('Pelanggan.edit', compact('sessiondata'));
     }
     public function delete($PelangganID)
@@ -55,7 +55,7 @@ class PelangganController extends Controller
     {
         try {
             DB::beginTransaction();
-            Pelanggan::updateOrCreate(['PelangganID'=>$request->PelangganID],$request->exists('PelangganID'));
+            Pelanggan::find($request->PelangganID)->update($request->except('PelangganID'));
             DB::commit();
             return redirect()->route('customer.index')->with(['msg' => 'Berhasil Mengupdate System User', 'type' => 'success']);
             } catch (\Exception $e) {

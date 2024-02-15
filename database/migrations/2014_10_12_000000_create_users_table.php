@@ -19,15 +19,21 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->smallInteger('level')->default(0);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletesTz(); //* tambah softdelete
         });
         //* tambah default user
         DB::table('users')->insert([
-            'name' => 'administrator',
+           [ 'name' => 'administrator',
             'email' => 'admin@gmail.com',
-            'password' => Hash::make('123456')
+            'level' => 1,
+            'password' => Hash::make('123456')],
+           [ 'name' => 'petugas',
+            'email' => 'petugas@gmail.com',
+            'level' => 0,
+            'password' => Hash::make('123456')]
         ]);
     }
 

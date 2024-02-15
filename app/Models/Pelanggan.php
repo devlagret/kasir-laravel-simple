@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Pelanggan extends Model
 {
     use HasFactory,SoftDeletes;
-    protected $table        = 'pelanggan';
-    protected $primaryKey   = 'PelangganID';
     protected $guarded = [
         'updated_at',
         'created_at'

@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detailpenjualan', function (Blueprint $table) {
-            $table->id('DetailID');
-            $table->unsignedBigInteger('PenjualanID')->nullable();
-            $table->foreign('PenjualanID')->on('penjualan')->references('PenjualanID')->onUpdate('cascade')->onDelete('set null');
-            $table->unsignedBigInteger('ProdukID')->nullable();
-            $table->foreign('ProdukID')->on('produk')->references('ProdukID')->onUpdate('cascade')->onDelete('set null');
+            $table->id();
+            $table->unsignedBigInteger('penjualan_id')->nullable();
+            $table->foreign('penjualan_id')->on('penjualan')->references('id')->onUpdate('cascade')->onDelete('set null');
+            $table->unsignedBigInteger('produk_id')->nullable();
+            $table->foreign('produk_id')->on('produk')->references('id')->onUpdate('cascade')->onDelete('set null');
             $table->integer('JumlahProduk')->nullable();
             $table->decimal('Subtotal',10)->nullable();
             $table->timestamps();
