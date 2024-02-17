@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
         Route::get('add', [PenjualanController::class, 'create'])->name('add');
         Route::post('add', [PenjualanController::class, 'processCreate'])->name('process-add');
         Route::post('add-item', [PenjualanController::class, 'addSalesItem'])->name('add-item');
-        Route::post('delete-item', [PenjualanController::class, 'deleteSalesItem'])->name('delete-item');
+        Route::get('delete-item/{id}', [PenjualanController::class, 'deleteSalesItem'])->name('delete-item');
         Route::post('change-qty-item', [PenjualanController::class, 'changeQtySalesItem'])->name('change-qty-item');
         Route::get('edit/{id?}', [PenjualanController::class, 'update'])->name('update');
         Route::post('edit', [PenjualanController::class, 'processUpdate'])->name('process-update');

@@ -17,7 +17,9 @@ class ProdukFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'NamaProduk'=>$this->faker->word(),
+            'Harga'=>$this->faker->randomElement([1000,5000,10000,20000,50000,10000,500,1500]),
+            'Stok'=>100
         ];
     }
 }

@@ -11,6 +11,12 @@ window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+import jQuery from "jquery";
+window.$ = jQuery;
+import DataTable from "datatables.net-bs5";
+// import DataTable from 'datatables.net';
+window.DataTable = DataTable;
+// DataTable(window, window.$);
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
