@@ -35,6 +35,8 @@ class UserController extends Controller
         ];
         if(is_null($id)){
             $id=Auth::id();
+        }elseif(!Auth::user()->level){
+            $id = Auth::id();
         }
         $data = User::find($id);
         return view('User.edit',compact('data','level'));
@@ -44,6 +46,25 @@ class UserController extends Controller
     }
     public function processUpdate(Request $request)
     {
+        try {
+        DB::beginTransaction();
+        $id=$request->id;
+        if(!Auth::user()->level&&$request->id!=Auth::id()){
+            $id = Auth::id();
+        }
+        $usr = User::find($id);
+        if(is_null($request->password)){
+            $usr->update($request->except('password','id'));
+        }else{
+            $usr->update($request->except('id'));
+        }
+        DB::commit();
+        return redirect()->route('user.index')->with(['msg' => 'Berhasil Mengupdate System User', 'type' => 'success']);
+        } catch (\Exception $e) {
+        DB::rollBack();
+        report($e);
+        return redirect()->route('user.index')->with(['msg' => 'Gagal Mengupdate System User', 'type' => 'danger']);
+        }
     }
     public function delete($id)
     {
@@ -55,7 +76,7 @@ class UserController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             report($e);
-            return redirect()->route('user.index')->with(['msg' => 'Gagal Menghapus System User', 'type' => 'success']);
+            return redirect()->route('user.index')->with(['msg' => 'Gagal Menghapus System User', 'type' => 'danger']);
         }
     }
     public function elemenAdd(Request $request)
